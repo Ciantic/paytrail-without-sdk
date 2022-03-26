@@ -53,11 +53,11 @@
         <p>Products are optional</p>
         <table>
             <tr>
-                <th>Code</th>
+                <th>Code *</th>
                 <th>Description</th>
-                <th>Price</th>
-                <th>VAT</th>
-                <th>Quantity</th>
+                <th>Price *</th>
+                <th>VAT *</th>
+                <th>Quantity *</th>
             </tr>
             <?php foreach (range(0, 4) as $i) : ?>
 

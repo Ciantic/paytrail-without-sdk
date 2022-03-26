@@ -74,7 +74,7 @@ function paytrail_sanitize_pay(object &$pdata)
 /**
  * Initiate the payment on paytrail, returns payment url 
  * 
- * @param object $payload See https://docs.paytrail.com/#/?id=request-body
+ * @param object $payload See https://docs.paytrail.com/#/?id=create-payment
  * @param string $merchantId Numeric id as string e.g. 375917
  * @param string $secretKey Secret, e.g. SAIPPUAKAUPPIAS
  * @return string Returns the url which handles the payment
