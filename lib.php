@@ -118,7 +118,7 @@ function paytrail_pay(object $payload, string $merchantId, string $secretKey)
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array_map(
         function ($key) use ($headers) {
-            return join(':', [$key, $headers[$key]]);
+            return $key . ":" . $headers[$key];
         },
         array_keys($headers)
     ));
