@@ -46,7 +46,7 @@ function paytrail_sanitize_pay(object &$pdata)
     if (empty($pdata->reference)) {
         $pdata->reference = $pdata->stamp;
     }
-    $pdata->amount = (int) ($pdata->amount * 100);
+    $pdata->amount = intval($pdata->amount);
 
     // Addresses
     if (empty($pdata->invoicingAddress->streetAddress)) {
@@ -62,7 +62,7 @@ function paytrail_sanitize_pay(object &$pdata)
             if (empty($pdata->items[$n]->productCode)) {
                 unset($pdata->items[$n]);
             } else {
-                $pdata->items[$n]->unitPrice = (int) ($pdata->items[$n]->unitPrice * 100);
+                $pdata->items[$n]->unitPrice = intval($pdata->items[$n]->unitPrice);
                 $pdata->items[$n]->units = (int) $pdata->items[$n]->units;
                 $pdata->items[$n]->vatPercentage = (int) $pdata->items[$n]->vatPercentage;
                 foreach ($pdata->items[$n] as $key => $value) {

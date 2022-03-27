@@ -25,8 +25,8 @@
 
         <p>Total of the payment, if you have products listed these need to match.</p>
         <label>
-            <span>Total amount *</span>
-            <input name="amount" type="number" value="1" step="0.01" />
+            <span>Total amount (cents) *</span>
+            <input name="amount" type="number" value="100" step="1" />
         </label>
         <label>
             <span>Email *</span>
@@ -64,7 +64,7 @@
                 <th>Code *</th>
                 <th>Description</th>
                 <th>VAT% *</th>
-                <th>Price *</th>
+                <th>Price (cents) *</th>
                 <th>Quantity *</th>
             </tr>
             <?php foreach (range(0, 4) as $i) : ?>
