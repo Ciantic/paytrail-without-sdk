@@ -25,10 +25,6 @@
 
         <p>Total of the payment, if you have products listed these need to match.</p>
         <label>
-            <span>Stamp * (must be unique)</span>
-            <input name="stamp" type="text" value="<?php echo uniqid("order") ?>" />
-        </label>
-        <label>
             <span>Total amount *</span>
             <input name="amount" type="number" value="1" step="0.01" />
         </label>
@@ -45,8 +41,12 @@
             <input name="customer[lastName]" type="text" />
         </label>
         <label>
-            <span>Order reference</span>
+            <span>Order reference *</span>
             <input name="reference" type="text" value="" />
+        </label>
+        <label>
+            <span>Stamp * (must be unique, generated if not given)</span>
+            <input name="stamp" type="text" value="<?php echo uniqid('order'); ?>" />
         </label>
 
         <h2>Products</h2>
@@ -55,8 +55,8 @@
             <tr>
                 <th>Code *</th>
                 <th>Description</th>
+                <th>VAT% *</th>
                 <th>Price *</th>
-                <th>VAT *</th>
                 <th>Quantity *</th>
             </tr>
             <?php foreach (range(0, 4) as $i) : ?>
@@ -64,8 +64,8 @@
                 <tr>
                     <td><input name="items[<?php echo $i; ?>][productCode]" type="text" /> </td>
                     <td><input name="items[<?php echo $i; ?>][description]" type="text" /> </td>
-                    <td><input name="items[<?php echo $i; ?>][unitPrice]" type="number" /> </td>
                     <td><input name="items[<?php echo $i; ?>][vatPercentage]" type="number" /> </td>
+                    <td><input name="items[<?php echo $i; ?>][unitPrice]" type="number" /> </td>
                     <td><input name="items[<?php echo $i; ?>][units]" type="number" /> </td>
                 </tr>
             <?php endforeach; ?>
@@ -74,15 +74,15 @@
         <h2>Invoicing address</h2>
         <p>This is optional</p>
         <label>
-            <span>Street</span>
+            <span>Street *</span>
             <input name="invoicingAddress[streetAddress]" type="text" />
         </label>
         <label>
-            <span>Postcode</span>
+            <span>Postal code *</span>
             <input name="invoicingAddress[postalCode]" type="text" />
         </label>
         <label>
-            <span>City</span>
+            <span>City *</span>
             <input name="invoicingAddress[city]" type="text" />
         </label>
         <label>
@@ -90,22 +90,22 @@
             <input name="invoicingAddress[county]" type="text" value="" />
         </label>
         <label>
-            <span>Country</span>
-            <input name="invoicingAddress[country]" type="text" value="" />
+            <span>Country (Alpha-2 country code, e.g. FI) *</span>
+            <input name="invoicingAddress[country]" type="text" value="FI" />
         </label>
 
         <h2>Delivery address</h2>
         <p>This is optional</p>
         <label>
-            <span>Street</span>
+            <span>Street *</span>
             <input name="deliveryAddress[streetAddress]" type="text" />
         </label>
         <label>
-            <span>Postcode</span>
+            <span>Postal code *</span>
             <input name="deliveryAddress[postalCode]" type="text" />
         </label>
         <label>
-            <span>City</span>
+            <span>City * </span>
             <input name="deliveryAddress[city]" type="text" />
         </label>
         <label>
@@ -113,17 +113,17 @@
             <input name="deliveryAddress[county]" type="text" value="" />
         </label>
         <label>
-            <span>Country</span>
-            <input name="deliveryAddress[country]" type="text" value="" />
+            <span>Country (Alpha-2 country code, e.g. FI) *</span>
+            <input name="deliveryAddress[country]" type="text" value="FI" />
         </label>
 
         <h2>Settings</h2>
         <label>
-            <span>Language (FI, SV, EN)</span>
+            <span>Language * (FI, SV, EN)</span>
             <input name="language" type="text" value="FI" />
         </label>
         <label>
-            <span>Currency</span>
+            <span>Currency *</span>
             <input name="currency" type="text" value="EUR" />
         </label>
 
