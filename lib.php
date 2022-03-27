@@ -22,7 +22,7 @@ function paytrail_hmac(string $secret, array $params, string $body = '')
     sort($keys, SORT_STRING);
     $rows = array_map(
         function ($key) use ($params) {
-            return join(':', [$key, $params[$key]]);
+            return $key . ":" . $params[$key];
         },
         $keys
     );
@@ -76,18 +76,15 @@ function paytrail_sanitize_pay(object &$pdata)
 
     // Remove empty properties
     foreach ($pdata as $key => $value) {
+        if (is_object($value)) {
+            foreach ($value as $k => $v) {
+                if (empty($v)) {
+                    unset($pdata->$key->$k);
+                }
+            }
+        }
         if (empty($value)) {
             unset($pdata->$key);
-        }
-    }
-    foreach ($pdata->customer as $key => $value) {
-        if (empty($value)) {
-            unset($pdata->customer->$key);
-        }
-    }
-    foreach ($pdata->redirectUrls as $key => $value) {
-        if (empty($value)) {
-            unset($pdata->redirectUrls->$key);
         }
     }
 }

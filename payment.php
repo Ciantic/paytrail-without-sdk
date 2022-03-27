@@ -35,10 +35,10 @@ try {
     die($e->getMessage());
 }
 
-
 if (!empty($_GET["_show_link"])) {
 ?>
     <h2>Link to the payment (payment works only once!)</h2>
+
     <input style="width: 100%" type="text" value="<?php echo htmlentities($url) ?>" onclick="this.select();">
 <?php
 } else {
