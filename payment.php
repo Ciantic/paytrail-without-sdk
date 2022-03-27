@@ -28,7 +28,7 @@ $pdata->callbackUrls = $pdata->redirectUrls = (object) [
 
 // Redirect to payment
 try {
-    $url = paytrail_pay($pdata, $merchant, $merchant_secret);
+    $payment = paytrail_pay($pdata, $merchant, $merchant_secret);
 } catch (PaytrailStampException $e) {
     die("Link is already created, <a href='./'>create a new link</a>");
 } catch (PaytrailException $e) {
@@ -39,8 +39,18 @@ if (!empty($_GET["_show_link"])) {
 ?>
     <h2>Link to the payment (payment works only once!)</h2>
 
-    <input style="width: 100%" type="text" value="<?php echo htmlentities($url) ?>" onclick="this.select();">
+    <p><input style="width: 100%" type="text" value="<?php echo htmlentities($payment->href) ?>" onclick="this.select();"></p>
+
+    <details>
+        <summary>Show payload and response</summary>
+
+        <h3>Payload</h3>
+        <pre><?php echo htmlentities(json_encode($pdata, JSON_PRETTY_PRINT)); ?></pre>
+
+        <h3>Response</h3>
+        <pre><?php echo htmlentities(json_encode($payment, JSON_PRETTY_PRINT)); ?></pre>
+    </details>
 <?php
 } else {
-    header("Location: $url");
+    header("Location: $payment->url");
 }

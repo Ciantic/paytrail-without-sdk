@@ -95,7 +95,7 @@ function paytrail_sanitize_pay(object &$pdata)
  * @param object $payload See https://docs.paytrail.com/#/?id=create-payment
  * @param string $merchantId Numeric id as string e.g. 375917
  * @param string $secretKey Secret, e.g. SAIPPUAKAUPPIAS
- * @return string Returns the url which handles the payment
+ * @return object Returns the paytrail object for payment
  * @throws Exception 
  */
 function paytrail_pay(object $payload, string $merchantId, string $secretKey)
@@ -138,5 +138,5 @@ function paytrail_pay(object $payload, string $merchantId, string $secretKey)
         }
         throw new PaytrailException($json->message);
     }
-    return $json->href;
+    return $json;
 }
