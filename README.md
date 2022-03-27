@@ -1,1 +1,1 @@
-Example how to use PayTrail directly without the SDK
+Example how to use Paytrail directly without the SDK

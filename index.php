@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create PayTrail payment</title>
+    <title>Make Paytrail payment</title>
     <style>
         label {
             display: block;
@@ -41,12 +41,20 @@
             <input name="customer[lastName]" type="text" />
         </label>
         <label>
-            <span>Order reference *</span>
+            <span>Phone</span>
+            <input name="customer[phone]" type="text" />
+        </label>
+        <label>
+            <span>Vat ID</span>
+            <input name="customer[vatId]" type="text" />
+        </label>
+        <label>
+            <span>Order reference * (generated if not given)</span>
             <input name="reference" type="text" value="" />
         </label>
         <label>
-            <span>Stamp * (must be unique, generated if not given)</span>
-            <input name="stamp" type="text" value="<?php echo uniqid('order'); ?>" />
+            <span>Stamp * (generated if not given)</span>
+            <input name="stamp" type="text" value="" />
         </label>
 
         <h2>Products</h2>
@@ -126,9 +134,16 @@
             <span>Currency *</span>
             <input name="currency" type="text" value="EUR" />
         </label>
+        <label>
+            <span>Redirect on success url * (generated if not given)</span>
+            <input name="redirectUrls[success]" type="url" value="" />
+        </label>
+        <label>
+            <span>Redirect on cancel url * (generated if not given)</span>
+            <input name="redirectUrls[cancel]" type="url" value="" />
+        </label>
 
         <label>
-
             <input name="_create_link" type="checkbox" value="1" />
             <em>Create payment link (does not go to payment)</em>
         </label>

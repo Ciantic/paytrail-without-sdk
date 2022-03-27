@@ -43,7 +43,9 @@ function paytrail_sanitize_pay(object &$pdata)
     if (empty($pdata->stamp)) {
         $pdata->stamp = uniqid("order");
     }
-
+    if (empty($pdata->reference)) {
+        $pdata->reference = $pdata->stamp;
+    }
     $pdata->amount = (int) ($pdata->amount * 100);
 
     // Addresses
@@ -63,11 +65,30 @@ function paytrail_sanitize_pay(object &$pdata)
                 $pdata->items[$n]->unitPrice = (int) ($pdata->items[$n]->unitPrice * 100);
                 $pdata->items[$n]->units = (int) $pdata->items[$n]->units;
                 $pdata->items[$n]->vatPercentage = (int) $pdata->items[$n]->vatPercentage;
+                foreach ($pdata->items[$n] as $key => $value) {
+                    if (empty($value)) {
+                        unset($pdata->items[$n]->$key);
+                    }
+                }
             }
         }
     }
-    if (empty($pdata->items)) {
-        unset($pdata->items);
+
+    // Remove empty properties
+    foreach ($pdata as $key => $value) {
+        if (empty($value)) {
+            unset($pdata->$key);
+        }
+    }
+    foreach ($pdata->customer as $key => $value) {
+        if (empty($value)) {
+            unset($pdata->customer->$key);
+        }
+    }
+    foreach ($pdata->redirectUrls as $key => $value) {
+        if (empty($value)) {
+            unset($pdata->redirectUrls->$key);
+        }
     }
 }
 
