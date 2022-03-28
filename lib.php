@@ -1,10 +1,22 @@
 <?php
 
-class PaytrailStampException extends Exception
+class PaytrailStampException extends PaytrailException
 {
 }
 class PaytrailException extends Exception
 {
+    protected $data;
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function __construct(string $message, int $code = 0, $data = null)
+    {
+        parent::__construct($message, $code);
+        $this->data = $data;
+    }
 }
 /**
  * Generate HMAC signature
@@ -134,9 +146,9 @@ function paytrail_pay(object $payload, string $merchantId, string $secretKey)
             isset($json->meta[0]) &&
             $json->meta[0] === "instance.stamp or instance.item.stamp already exists for merchant."
         ) {
-            throw new PaytrailStampException();
+            throw new PaytrailStampException("Stamp already exists", 0, $json);
         }
-        throw new PaytrailException($json->message);
+        throw new PaytrailException($json->message, 0, $json);
     }
     return $json;
 }

@@ -1,5 +1,6 @@
 <?php
-// FORM HANDLER
+
+// This is a form handler for the payment
 
 include 'lib.php';
 
@@ -35,10 +36,10 @@ try {
     die($e->getMessage());
 }
 
-
 if (!empty($_GET["_show_link"])) {
     // Show the payment link
 ?>
+
     <h2>Link to the payment (payment works only once!)</h2>
 
     <p><input style="width: 100%" type="text" value="<?php echo htmlentities($payment->href) ?>" onclick="this.select();"></p>
