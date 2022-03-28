@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Simple Paytrail library
+ * 
+ * https://github.com/Ciantic/php-paytrail-without-sdk
+ * 
+ * @license MIT
+ * @author Jari Pennanen
+ */
+
 class PaytrailStampException extends PaytrailException
 {
 }
